@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Shop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="">
+    <div class="px-4 py-6 flex justify-between items-center">
+        <div class="flex items-center">
+            <img src="/logos/cafetera.png" alt="Logo" class="rounded-full mr-3 w-12 h-12">
+            <h1 class="text-2xl font-bold">Coffee Shop</h1>
+        </div>
+        <div class="">
+            {% if user.is_authenticated %}
+                <form action="{% url "logout" %}" method="post" class="inline">
+                    {% csrf_token %}
+                    <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700">Cerrar sesión</button>
+                </form>
+            {% else %}
+                <a href="{% url "login" %}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Login</a>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="container mx-auto px-4 flex justify-center items-center">
+        {% block content %}
+        {% endblock content %}
+    </div>
+</body>
+</html>
