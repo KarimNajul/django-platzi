@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block  content %}
+    
+    <div style="background-size: cover; background-repeat: no-repeat;">
+        <div class="rounded-xl border border-gray-700 bg-gray-800 p-4 ">
+            <div class="flex items-center gap-4">
+                <div>
+                    <h3 class="text-lg font-medium text-white">Orden para: {{order.user.username}}</h3>
+                </div>
+            </div>
+        
+            <ul class="mt-4 space-y-2">
+                {% for product_order in order.orderproduct_set.all  %}
+                    <li>
+                        <div class="block h-full rounded-lg border border-gray-700 p-4 hover:border-pink-600 flex items-center">
+                            <img
+                                alt=""
+                                src="https://images.unsplash.com/photo-1614644147724-2d4785d69962?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80"
+                                class="size-16 rounded-full object-cover"
+                            />
+                            <div class="p-4">
+                                <strong class="font-medium text-white">{{product_order.product.name }}</strong>
+                        
+                                <p class="mt-1 text-xs font-medium text-gray-300">
+                                    {{ product_order.product.price }}
+                                </p>
+                            <div>
+                        </div>
+                    </li>
+                {% empty %}
+                    No hay productos en tu orden
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+{% endblock content %}
